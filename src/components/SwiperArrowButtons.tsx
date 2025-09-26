@@ -8,7 +8,15 @@ type PropType = ComponentPropsWithRef<'button'> & {
 export const PrevButton: React.FC<PropType> = (props) => {
   const { children, swiperInstance, ...restProps } = props
 
+  // Track if touch event was handled to prevent duplicate execution
+  let touchHandled = false
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // If touch was already handled, don't execute click
+    if (touchHandled) {
+      touchHandled = false
+      return
+    }
     e.preventDefault()
     e.stopPropagation()
     if (swiperInstance) {
@@ -16,9 +24,18 @@ export const PrevButton: React.FC<PropType> = (props) => {
     }
   }
 
-  // Safari-specific touch event handling
+  // iOS Safari-specific touch event handling
   const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+    // Don't preventDefault on touchstart for iOS Safari - it interferes with click events
+    e.stopPropagation()
+    touchHandled = false
+  }
+
+  // iOS Safari requires touchend for reliable button interactions
+  const handleTouchEnd = (e: React.TouchEvent<HTMLButtonElement>) => {
     e.preventDefault()
+    e.stopPropagation()
+    touchHandled = true
     if (swiperInstance) {
       swiperInstance.slidePrev()
     }
@@ -30,11 +47,13 @@ export const PrevButton: React.FC<PropType> = (props) => {
       type="button"
       onClick={handleClick}
       onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       style={{
         WebkitTapHighlightColor: 'transparent',
         WebkitTouchCallout: 'none',
         WebkitUserSelect: 'none',
-        touchAction: 'manipulation'
+        touchAction: 'manipulation',
+        cursor: 'pointer' // Required for iOS Safari touch event registration
       }}
       {...restProps}
     >
@@ -52,7 +71,15 @@ export const PrevButton: React.FC<PropType> = (props) => {
 export const NextButton: React.FC<PropType> = (props) => {
   const { children, swiperInstance, ...restProps } = props
 
+  // Track if touch event was handled to prevent duplicate execution
+  let touchHandled = false
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // If touch was already handled, don't execute click
+    if (touchHandled) {
+      touchHandled = false
+      return
+    }
     e.preventDefault()
     e.stopPropagation()
     if (swiperInstance) {
@@ -60,9 +87,18 @@ export const NextButton: React.FC<PropType> = (props) => {
     }
   }
 
-  // Safari-specific touch event handling
+  // iOS Safari-specific touch event handling
   const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+    // Don't preventDefault on touchstart for iOS Safari - it interferes with click events
+    e.stopPropagation()
+    touchHandled = false
+  }
+
+  // iOS Safari requires touchend for reliable button interactions
+  const handleTouchEnd = (e: React.TouchEvent<HTMLButtonElement>) => {
     e.preventDefault()
+    e.stopPropagation()
+    touchHandled = true
     if (swiperInstance) {
       swiperInstance.slideNext()
     }
@@ -74,11 +110,13 @@ export const NextButton: React.FC<PropType> = (props) => {
       type="button"
       onClick={handleClick}
       onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       style={{
         WebkitTapHighlightColor: 'transparent',
         WebkitTouchCallout: 'none',
         WebkitUserSelect: 'none',
-        touchAction: 'manipulation'
+        touchAction: 'manipulation',
+        cursor: 'pointer' // Required for iOS Safari touch event registration
       }}
       {...restProps}
     >
