@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { GameMode } from './ModeSelection'
+import {
+  PrevButton,
+  NextButton,
+  usePrevNextButtons
+} from './EmblaCarouselArrowButtons'
 
 interface Question {
   text: string
@@ -21,6 +26,9 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
     loop: true,
     skipSnaps: false,
     dragFree: false,
+    // Peek effect configuration
+    align: 'center', // Center the active slide
+    containScroll: 'trimSnaps', // Trim snaps for better peek effect
     // Safari iOS compatibility options
     dragThreshold: 10, // Lower threshold for better Safari touch detection
     watchDrag: true, // Ensure drag events are properly watched
@@ -29,6 +37,14 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
   const [questions, setQuestions] = useState<Question[]>([])
   const [, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true)
+
+  // Arrow buttons functionality
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick
+  } = usePrevNextButtons(emblaApi)
 
   // Load questions based on mode
   useEffect(() => {
@@ -116,18 +132,28 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
       {/* Card Swiper */}
       <div className="card-swiper">
         <div className="embla" ref={emblaRef}>
-          <div className="embla__container" style={{ display: 'flex' }}>
+          <div className="embla__container">
             {questions.map((question, index) => (
-              <div
-                key={index}
-                className="embla__slide"
-                style={{ flex: '0 0 100%', minWidth: 0 }}
-              >
+              <div key={index} className="embla__slide">
                 <div className="question-card">
                   <p className="question-text">{question.text}</p>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Navigation Arrows at Bottom */}
+        <div className="embla__controls">
+          <div className="embla__buttons">
+            <PrevButton
+              onClick={onPrevButtonClick}
+              disabled={prevBtnDisabled}
+            />
+            <NextButton
+              onClick={onNextButtonClick}
+              disabled={nextBtnDisabled}
+            />
           </div>
         </div>
       </div>
