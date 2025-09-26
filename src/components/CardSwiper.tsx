@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
+import React, { useState, useEffect, useRef } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
+import type { Swiper as SwiperType } from 'swiper'
 import { GameMode } from './ModeSelection'
-import {
-  PrevButton,
-  NextButton,
-  usePrevNextButtons
-} from './EmblaCarouselArrowButtons'
+import { PrevButton, NextButton } from './SwiperArrowButtons'
+
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/navigation'
 
 interface Question {
   text: string
@@ -22,29 +24,10 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
   onAbout,
   onBack
 }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    skipSnaps: false,
-    dragFree: false,
-    // Peek effect configuration
-    align: 'center', // Center the active slide
-    containScroll: 'trimSnaps', // Trim snaps for better peek effect
-    // Safari iOS compatibility options
-    dragThreshold: 10, // Lower threshold for better Safari touch detection
-    watchDrag: true, // Ensure drag events are properly watched
-    axis: 'x' // Explicitly set horizontal axis for Safari
-  })
+  const swiperRef = useRef<SwiperType | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
-  const [, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true)
-
-  // Arrow buttons functionality
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi)
 
   // Load questions based on mode
   useEffect(() => {
@@ -89,19 +72,9 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
     loadQuestions()
   }, [mode])
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return
-    setCurrentIndex(emblaApi.selectedScrollSnap())
-  }, [emblaApi])
-
-  useEffect(() => {
-    if (!emblaApi) return
-    onSelect()
-    emblaApi.on('select', onSelect)
-    return () => {
-      emblaApi.off('select', onSelect)
-    }
-  }, [emblaApi, onSelect])
+  const handleSlideChange = (swiper: SwiperType) => {
+    setCurrentIndex(swiper.activeIndex)
+  }
 
   if (loading) {
     return (
@@ -131,29 +104,36 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
 
       {/* Card Swiper */}
       <div className="card-swiper">
-        <div className="embla" ref={emblaRef}>
-          <div className="embla__container">
-            {questions.map((question, index) => (
-              <div key={index} className="embla__slide">
-                <div className="question-card">
-                  <p className="question-text">{question.text}</p>
-                </div>
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={16}
+          slidesPerView={1.2}
+          centeredSlides={true}
+          loop={true}
+          grabCursor={true}
+          touchRatio={1}
+          touchAngle={45}
+          threshold={10}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper
+          }}
+          onSlideChange={handleSlideChange}
+          className="swiper-container"
+        >
+          {questions.map((question, index) => (
+            <SwiperSlide key={index} className="swiper-slide">
+              <div className="question-card">
+                <p className="question-text">{question.text}</p>
               </div>
-            ))}
-          </div>
-        </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
         {/* Navigation Arrows at Bottom */}
-        <div className="embla__controls">
-          <div className="embla__buttons">
-            <PrevButton
-              onClick={onPrevButtonClick}
-              disabled={prevBtnDisabled}
-            />
-            <NextButton
-              onClick={onNextButtonClick}
-              disabled={nextBtnDisabled}
-            />
+        <div className="swiper__controls">
+          <div className="swiper__buttons">
+            <PrevButton />
+            <NextButton />
           </div>
         </div>
       </div>

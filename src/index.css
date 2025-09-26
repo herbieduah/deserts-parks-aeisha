@@ -377,7 +377,7 @@ p {
   width: 100%; /* Full width container */
 }
 
-.embla {
+.swiper-container {
   width: 100%;
   height: 65vh; /* 65% of screen height */
   overflow: hidden; /* Required for Safari touch events */
@@ -389,26 +389,22 @@ p {
   --slide-size: 85%; /* Slides take 85% width for peek effect */
 }
 
-.embla__container {
+.swiper-wrapper {
   display: flex;
   height: 100%;
   /* Safari iOS touch compatibility */
   touch-action: manipulation;
   -webkit-transform: translateZ(0); /* Force hardware acceleration on Safari */
   transform: translateZ(0);
-  /* Peek effect spacing */
-  margin-left: calc(var(--slide-spacing) * -1);
 }
 
-.embla__slide {
-  flex: 0 0 var(--slide-size); /* Use slide size for peek effect */
+.swiper-slide {
+  flex: 0 0 auto;
   min-width: 0;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Peek effect spacing */
-  padding-left: var(--slide-spacing);
   /* Safari iOS touch compatibility */
   touch-action: manipulation;
   -webkit-user-select: none; /* Prevent text selection during swipe */
@@ -438,21 +434,21 @@ p {
   font-weight: 600; /* SemiBold */
 }
 
-/* Embla Carousel Controls */
-.embla__controls {
+/* Swiper Carousel Controls */
+.swiper__controls {
   display: flex;
   justify-content: center;
   margin-top: var(--spacing-medium);
   padding: 0 var(--spacing-large);
 }
 
-.embla__buttons {
+.swiper__buttons {
   display: flex;
   gap: var(--spacing-medium);
   align-items: center;
 }
 
-.embla__button {
+.swiper__button {
   -webkit-tap-highlight-color: rgba(var(--color-primary-rgb), 0.5);
   -webkit-appearance: none;
   appearance: none;
@@ -475,22 +471,22 @@ p {
   transition: all 0.2s ease;
 }
 
-.embla__button:hover {
+.swiper__button:hover {
   background-color: var(--color-primary);
   color: var(--color-secondary);
 }
 
-.embla__button:disabled {
+.swiper__button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.embla__button:disabled:hover {
+.swiper__button:disabled:hover {
   background-color: var(--color-secondary);
   color: var(--color-primary);
 }
 
-.embla__button__svg {
+.swiper__button__svg {
   width: 35%;
   height: 35%;
 }
