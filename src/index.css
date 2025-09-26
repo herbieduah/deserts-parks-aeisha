@@ -158,6 +158,11 @@ p {
   color: var(--color-text);
 }
 
+.start-button-container {
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
+}
+
 /* Buttons - Flat Design with Two-Color Palette */
 .btn {
   font-family: var(--font-family);
