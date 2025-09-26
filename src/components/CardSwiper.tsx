@@ -27,6 +27,7 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
   const swiperRef = useRef<SwiperType | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
 
   // Load questions based on mode
   useEffect(() => {
@@ -123,6 +124,7 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
           // Event handlers
           onSwiper={(swiper) => {
             swiperRef.current = swiper
+            setSwiperInstance(swiper) // Set state to trigger re-render of buttons
           }}
           className="swiper-container"
         >
@@ -138,8 +140,8 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
         {/* Navigation Arrows at Bottom */}
         <div className="swiper__controls">
           <div className="swiper__buttons">
-            <PrevButton swiperInstance={swiperRef.current} />
-            <NextButton swiperInstance={swiperRef.current} />
+            <PrevButton swiperInstance={swiperInstance} />
+            <NextButton swiperInstance={swiperInstance} />
           </div>
         </div>
       </div>

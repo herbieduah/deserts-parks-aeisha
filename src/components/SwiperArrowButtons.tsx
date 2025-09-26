@@ -19,8 +19,19 @@ export const PrevButton: React.FC<PropType> = (props) => {
     }
     e.preventDefault()
     e.stopPropagation()
-    if (swiperInstance) {
+
+    // Safari-compatible: Try multiple ways to access Swiper
+    if (swiperInstance && typeof swiperInstance.slidePrev === 'function') {
       swiperInstance.slidePrev()
+    } else {
+      // Fallback: Try to get Swiper instance directly from DOM
+      const swiperContainer = document.querySelector('.swiper-container') as any
+      if (
+        swiperContainer?.swiper &&
+        typeof swiperContainer.swiper.slidePrev === 'function'
+      ) {
+        swiperContainer.swiper.slidePrev()
+      }
     }
   }
 
@@ -36,8 +47,19 @@ export const PrevButton: React.FC<PropType> = (props) => {
     e.preventDefault()
     e.stopPropagation()
     touchHandled = true
-    if (swiperInstance) {
+
+    // Safari-compatible: Try multiple ways to access Swiper
+    if (swiperInstance && typeof swiperInstance.slidePrev === 'function') {
       swiperInstance.slidePrev()
+    } else {
+      // Fallback: Try to get Swiper instance directly from DOM
+      const swiperContainer = document.querySelector('.swiper-container') as any
+      if (
+        swiperContainer?.swiper &&
+        typeof swiperContainer.swiper.slidePrev === 'function'
+      ) {
+        swiperContainer.swiper.slidePrev()
+      }
     }
   }
 
@@ -82,8 +104,19 @@ export const NextButton: React.FC<PropType> = (props) => {
     }
     e.preventDefault()
     e.stopPropagation()
-    if (swiperInstance) {
+
+    // Safari-compatible: Try multiple ways to access Swiper
+    if (swiperInstance && typeof swiperInstance.slideNext === 'function') {
       swiperInstance.slideNext()
+    } else {
+      // Fallback: Try to get Swiper instance directly from DOM
+      const swiperContainer = document.querySelector('.swiper-container') as any
+      if (
+        swiperContainer?.swiper &&
+        typeof swiperContainer.swiper.slideNext === 'function'
+      ) {
+        swiperContainer.swiper.slideNext()
+      }
     }
   }
 
@@ -99,8 +132,19 @@ export const NextButton: React.FC<PropType> = (props) => {
     e.preventDefault()
     e.stopPropagation()
     touchHandled = true
-    if (swiperInstance) {
+
+    // Safari-compatible: Try multiple ways to access Swiper
+    if (swiperInstance && typeof swiperInstance.slideNext === 'function') {
       swiperInstance.slideNext()
+    } else {
+      // Fallback: Try to get Swiper instance directly from DOM
+      const swiperContainer = document.querySelector('.swiper-container') as any
+      if (
+        swiperContainer?.swiper &&
+        typeof swiperContainer.swiper.slideNext === 'function'
+      ) {
+        swiperContainer.swiper.slideNext()
+      }
     }
   }
 
