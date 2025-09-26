@@ -20,7 +20,11 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     skipSnaps: false,
-    dragFree: false
+    dragFree: false,
+    // Safari iOS compatibility options
+    dragThreshold: 10, // Lower threshold for better Safari touch detection
+    watchDrag: true, // Ensure drag events are properly watched
+    axis: 'x' // Explicitly set horizontal axis for Safari
   })
   const [questions, setQuestions] = useState<Question[]>([])
   const [, setCurrentIndex] = useState(0)

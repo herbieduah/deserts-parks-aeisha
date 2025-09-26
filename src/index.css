@@ -99,6 +99,10 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Safari iOS touch compatibility */
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain; /* Prevent pull-to-refresh */
 }
 
 #root {
@@ -374,12 +378,19 @@ p {
 .embla {
   width: 100%;
   height: 65vh; /* 65% of screen height */
-  /* overflow: hidden; */
+  overflow: hidden; /* Required for Safari touch events */
+  /* Safari iOS touch compatibility */
+  touch-action: manipulation; /* Safari only supports 'auto' and 'manipulation' */
+  -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
 }
 
 .embla__container {
   display: flex;
   height: 100%;
+  /* Safari iOS touch compatibility */
+  touch-action: manipulation;
+  -webkit-transform: translateZ(0); /* Force hardware acceleration on Safari */
+  transform: translateZ(0);
 }
 
 .embla__slide {
@@ -390,6 +401,10 @@ p {
   align-items: center;
   justify-content: center;
   /* padding: var(--spacing-medium); */
+  /* Safari iOS touch compatibility */
+  touch-action: manipulation;
+  -webkit-user-select: none; /* Prevent text selection during swipe */
+  user-select: none;
 }
 
 .question-card {
