@@ -59,20 +59,11 @@ function App() {
     setCurrentScreen('mode-selection')
   }
 
-  const handleBackFromTipCalculator = () => {
-    // Return to the last non-tip-calculator screen
-    if (selectedMode) {
-      setCurrentScreen('cards')
-    } else {
-      setCurrentScreen('entry')
-    }
-  }
-
   // Force tip calculator in landscape mode
   if (isLandscape) {
     return (
       <div className="app-container">
-        <TipCalculator onBack={handleBackFromTipCalculator} />
+        <TipCalculator />
       </div>
     )
   }

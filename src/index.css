@@ -690,15 +690,27 @@ p {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: var(--spacing-large);
-  gap: var(--spacing-large);
+  padding: var(--spacing-medium);
+  gap: var(--spacing-medium);
+  font-size: var(--font-size-sm);
 }
 
 .tip-header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-medium);
-  margin-bottom: var(--spacing-large);
+  justify-content: center;
+  margin-bottom: var(--spacing-medium);
+}
+
+.tip-header h1 {
+  font-size: var(--font-size-xl);
+  margin: 0;
+  color: var(--color-text);
+}
+
+.bill-amount-section {
+  padding: var(--spacing-large);
+  margin-bottom: var(--spacing-small);
 }
 
 .back-button {
@@ -719,7 +731,11 @@ p {
 .tip-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-large);
+  gap: var(--spacing-medium);
+}
+
+.tip-results-card {
+  padding: var(--spacing-medium) !important;
 }
 
 .form-group {
@@ -839,17 +855,32 @@ p {
 /* Landscape Mode - Tip Calculator Only */
 @media (orientation: landscape) and (max-height: 500px) {
   .tip-calculator {
-    padding: var(--spacing-medium);
-    gap: var(--spacing-medium);
+    padding: var(--spacing-small);
+    gap: var(--spacing-small);
+    font-size: var(--font-size-xs);
+  }
+
+  .tip-header h1 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-extraSmall);
   }
 
   .tip-form {
     flex-direction: row;
     align-items: end;
-    gap: var(--spacing-medium);
+    gap: var(--spacing-small);
   }
 
   .form-group {
     flex: 1;
+  }
+
+  .bill-amount-section {
+    padding: var(--spacing-medium);
+    margin-bottom: 0;
+  }
+
+  .tip-results-card {
+    padding: var(--spacing-small) !important;
   }
 }
