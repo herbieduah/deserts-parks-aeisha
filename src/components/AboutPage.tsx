@@ -15,9 +15,11 @@ interface AboutPageProps {
 export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
   return (
     <div className="about-page">
-      <button onClick={onBack} className="header-link">
-        ← Back
-      </button>
+      <div className="about-header">
+        <button onClick={onBack} className="header-link">
+          ← Back
+        </button>
+      </div>
 
       <div className="about-content">
         <h1>About Desert Spark Cards</h1>
@@ -56,6 +58,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
             space for BIPOC individuals to feel seen, heard, and inspired — the
             same energy these cards bring to your own conversations.
           </p>
+
+          <h3>Listen to Thriving Loudly</h3>
           <div className="podcast-links">
             <a
               href="https://thrivingloudly.buzzsprout.com/2440817/about"

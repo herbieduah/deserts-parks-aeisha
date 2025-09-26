@@ -385,7 +385,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-medium);
+  /* padding: var(--spacing-medium); */
 }
 
 .question-card {
@@ -436,15 +436,30 @@ p {
 
 /* About Page */
 .about-page {
-  padding: var(--spacing-large);
   max-width: 500px;
   margin: 0 auto;
   min-height: 100vh;
   background-color: var(--color-background);
+  position: relative;
+}
+
+.about-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  padding: var(--spacing-medium) var(--spacing-large);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 10;
 }
 
 .about-content {
-  margin-top: var(--spacing-large);
+  padding: var(--spacing-large);
+  padding-top: calc(var(--spacing-large) + 60px); /* Account for fixed header */
+  overflow-y: auto;
 }
 
 .about-content h1 {
