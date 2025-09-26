@@ -1,0 +1,22 @@
+export const datingQuestions: string[] = [
+  "What's your go-to story when someone asks you to tell them something funny about yourself?",
+  "If we could only order appetizers on this date, which ones are you choosing first?",
+  "What's the most random thing that's ever happened to you on a date?",
+  "Would you rather go on a hike, hit a coffee shop, or try something adventurous for a second date?",
+  "What's a movie that says way too much about your taste in people if you love it?",
+  "If you had to pick a place in Phoenix for the perfect date, where are we going?",
+  "Do you like when the other person plans the whole date, or do you prefer to keep it spontaneous?",
+  "What's one thing that instantly makes a date more fun for you?",
+  "Have you ever had a first date so good you didn't want it to end? What made it that way?",
+  "What's something small that impresses you way more than it should?",
+  "If you could teleport us anywhere right now for this date, where would you take us?",
+  "What's your ideal way to wrap up a date — dessert, a walk, or something else?",
+  "If a date goes badly, what's your smoothest exit strategy?",
+  "Do you think texting after the date should happen the same night or the next day?",
+  "What's the best local spot you've taken someone on a date in Phoenix?",
+  "What's the most awkward silence you've ever had on a date and how did you handle it?",
+  "Would you rather go to a live concert or a comedy show for a night out?",
+  "What's one question you wish more people asked on first or second dates?",
+  "What's a simple thing that instantly creates chemistry for you?",
+  "What would make tonight a date worth remembering?"
+]

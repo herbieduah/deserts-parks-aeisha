@@ -1,0 +1,22 @@
+export const couplesQuestions: string[] = [
+  "What's one thing we've done together that you'd love to relive again?",
+  "If we had a whole weekend with no responsibilities, how would you want to spend it?",
+  "What little habit of mine do you secretly find cute?",
+  "What's your favorite meal we've shared in Phoenix so far?",
+  "If we could plan a spontaneous trip tonight, where would you want to go?",
+  "What's something you've always wanted us to try together but haven't yet?",
+  "Do you prefer date nights at home or out exploring the city?",
+  "What's a song that makes you think of us?",
+  "If we were to create a couple's tradition starting now, what would it be?",
+  "What's the funniest inside joke we've ever created?",
+  "How do you know when a date night with me is going really well?",
+  "If our relationship had a theme restaurant, what would be on the menu?",
+  "What's your dream double date idea with friends?",
+  "What's one small thing I do that makes you feel cared for?",
+  "What's your favorite way we've handled stress or conflict together?",
+  "If we had to redo our very first date, what would you change?",
+  "What's your favorite thing about how we spend lazy days?",
+  "Which Arizona spot would you want us to make 'our place'?",
+  "What's one way we could make our future date nights even more fun?",
+  "If we had to build the perfect Phoenix night together, what would it include?"
+]

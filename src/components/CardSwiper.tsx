@@ -4,6 +4,8 @@ import { Navigation } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
 import { GameMode } from './ModeSelection'
 import { PrevButton, NextButton } from './SwiperArrowButtons'
+import { datingQuestions } from '../data/datingQuestions'
+import { couplesQuestions } from '../data/couplesQuestions'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -26,61 +28,28 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
 }) => {
   const swiperRef = useRef<SwiperType | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
-  const [loading, setLoading] = useState(true)
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
 
-  // Load questions based on mode
+  // Load questions based on mode using static imports
   useEffect(() => {
-    const loadQuestions = async () => {
-      setLoading(true)
-      try {
-        let questionsData: string[] = []
+    let questionsData: string[] = []
 
-        if (mode === 'dating') {
-          const response = await fetch('/data/dating.json')
-          const data = await response.json()
-          questionsData = data.questions
-        } else if (mode === 'couples') {
-          const response = await fetch('/data/couples.json')
-          const data = await response.json()
-          questionsData = data.questions
-        } else {
-          // Random mode - combine both datasets
-          const [datingResponse, couplesResponse] = await Promise.all([
-            fetch('/data/dating.json'),
-            fetch('/data/couples.json')
-          ])
-          const datingData = await datingResponse.json()
-          const couplesData = await couplesResponse.json()
-          questionsData = [...datingData.questions, ...couplesData.questions]
-        }
-
-        // Shuffle questions for random order
-        const shuffled = questionsData
-          .map((text) => ({ text }))
-          .sort(() => Math.random() - 0.5)
-
-        setQuestions(shuffled)
-      } catch (error) {
-        console.error('Error loading questions:', error)
-        setQuestions([{ text: "What's your favorite way to spend a weekend?" }])
-      } finally {
-        setLoading(false)
-      }
+    if (mode === 'dating') {
+      questionsData = datingQuestions
+    } else if (mode === 'couples') {
+      questionsData = couplesQuestions
+    } else {
+      // Random mode - combine both datasets
+      questionsData = [...datingQuestions, ...couplesQuestions]
     }
 
-    loadQuestions()
-  }, [mode])
+    // Shuffle questions for random order
+    const shuffled = questionsData
+      .map((text) => ({ text }))
+      .sort(() => Math.random() - 0.5)
 
-  if (loading) {
-    return (
-      <div className="cards-container">
-        <div className="question-card">
-          <p className="question-text">Loading questions...</p>
-        </div>
-      </div>
-    )
-  }
+    setQuestions(shuffled)
+  }, [mode])
 
   return (
     <div className="cards-container">
