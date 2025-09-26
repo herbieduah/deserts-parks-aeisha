@@ -1,14 +1,27 @@
 import React, { ComponentPropsWithRef } from 'react'
-import { useSwiper } from 'swiper/react'
+import type { Swiper as SwiperType } from 'swiper'
 
-type PropType = ComponentPropsWithRef<'button'>
+type PropType = ComponentPropsWithRef<'button'> & {
+  swiperInstance?: SwiperType | null
+}
 
 export const PrevButton: React.FC<PropType> = (props) => {
-  const { children, ...restProps } = props
-  const swiper = useSwiper()
+  const { children, swiperInstance, ...restProps } = props
 
-  const handleClick = () => {
-    swiper?.slidePrev()
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (swiperInstance) {
+      swiperInstance.slidePrev()
+    }
+  }
+
+  // Safari-specific touch event handling
+  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (swiperInstance) {
+      swiperInstance.slidePrev()
+    }
   }
 
   return (
@@ -16,6 +29,13 @@ export const PrevButton: React.FC<PropType> = (props) => {
       className="swiper__button swiper__button--prev"
       type="button"
       onClick={handleClick}
+      onTouchStart={handleTouchStart}
+      style={{
+        WebkitTapHighlightColor: 'transparent',
+        WebkitTouchCallout: 'none',
+        WebkitUserSelect: 'none',
+        touchAction: 'manipulation'
+      }}
       {...restProps}
     >
       <svg className="swiper__button__svg" viewBox="0 0 532 532">
@@ -30,11 +50,22 @@ export const PrevButton: React.FC<PropType> = (props) => {
 }
 
 export const NextButton: React.FC<PropType> = (props) => {
-  const { children, ...restProps } = props
-  const swiper = useSwiper()
+  const { children, swiperInstance, ...restProps } = props
 
-  const handleClick = () => {
-    swiper?.slideNext()
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (swiperInstance) {
+      swiperInstance.slideNext()
+    }
+  }
+
+  // Safari-specific touch event handling
+  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (swiperInstance) {
+      swiperInstance.slideNext()
+    }
   }
 
   return (
@@ -42,6 +73,13 @@ export const NextButton: React.FC<PropType> = (props) => {
       className="swiper__button swiper__button--next"
       type="button"
       onClick={handleClick}
+      onTouchStart={handleTouchStart}
+      style={{
+        WebkitTapHighlightColor: 'transparent',
+        WebkitTouchCallout: 'none',
+        WebkitUserSelect: 'none',
+        touchAction: 'manipulation'
+      }}
       {...restProps}
     >
       <svg className="swiper__button__svg" viewBox="0 0 532 532">

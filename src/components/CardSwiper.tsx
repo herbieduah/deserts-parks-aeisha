@@ -109,6 +109,18 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
           touchRatio={1}
           touchAngle={45}
           threshold={10}
+          // Safari-specific configurations
+          touchStartPreventDefault={false}
+          touchStartForcePreventDefault={false}
+          touchMoveStopPropagation={false}
+          simulateTouch={true}
+          allowTouchMove={true}
+          touchEventsTarget="container"
+          passiveListeners={true}
+          // Hardware acceleration for Safari
+          cssMode={false}
+          freeMode={false}
+          // Event handlers
           onSwiper={(swiper) => {
             swiperRef.current = swiper
           }}
@@ -126,8 +138,8 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
         {/* Navigation Arrows at Bottom */}
         <div className="swiper__controls">
           <div className="swiper__buttons">
-            <PrevButton />
-            <NextButton />
+            <PrevButton swiperInstance={swiperRef.current} />
+            <NextButton swiperInstance={swiperRef.current} />
           </div>
         </div>
       </div>
