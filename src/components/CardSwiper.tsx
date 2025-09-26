@@ -26,7 +26,6 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
 }) => {
   const swiperRef = useRef<SwiperType | null>(null)
   const [questions, setQuestions] = useState<Question[]>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true)
 
   // Load questions based on mode
@@ -72,10 +71,6 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
     loadQuestions()
   }, [mode])
 
-  const handleSlideChange = (swiper: SwiperType) => {
-    setCurrentIndex(swiper.activeIndex)
-  }
-
   if (loading) {
     return (
       <div className="cards-container">
@@ -117,7 +112,6 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
           onSwiper={(swiper) => {
             swiperRef.current = swiper
           }}
-          onSlideChange={handleSlideChange}
           className="swiper-container"
         >
           {questions.map((question, index) => (
