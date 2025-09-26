@@ -132,7 +132,7 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
       <div className="footer">
         <span className="footer-text">Powered by</span>
         <img src="/assets/opnrs-logo.svg" alt="Opnrs" className="footer-logo" />
-        <span className="footer-text">Opnrs</span>
+        <span className="footer-text">opnrs</span>
       </div>
     </div>
   )

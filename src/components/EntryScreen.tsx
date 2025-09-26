@@ -16,8 +16,8 @@ export const EntryScreen: React.FC<EntryScreenProps> = ({ onStart }) => {
           <h1 className="hero-title">Desert Spark Cards</h1>
           <h2 className="hero-subtitle">with Aiesha Beasley</h2>
           <p className="hero-tagline">
-            From first date jitters to cozy nights in — let's spark something
-            real.
+            Waiting for food in Phoenix? Don’t waste the moment: spark the kind
+            of talk that turns a date into a memory.
           </p>
         </div>
       </div>
@@ -29,6 +29,13 @@ export const EntryScreen: React.FC<EntryScreenProps> = ({ onStart }) => {
         >
           Let's Start
         </button>
+      </div>
+
+      {/* Footer positioned below start button */}
+      <div className="footer entry-footer">
+        <span className="footer-text">Powered by</span>
+        <img src="/assets/opnrs-logo.svg" alt="Opnrs" className="footer-logo" />
+        <span className="footer-text">opnrs</span>
       </div>
     </div>
   )
