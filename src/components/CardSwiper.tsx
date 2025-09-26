@@ -9,9 +9,14 @@ interface Question {
 interface CardSwiperProps {
   mode: GameMode
   onAbout: () => void
+  onBack: () => void
 }
 
-export const CardSwiper: React.FC<CardSwiperProps> = ({ mode, onAbout }) => {
+export const CardSwiper: React.FC<CardSwiperProps> = ({
+  mode,
+  onAbout,
+  onBack
+}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     skipSnaps: false,
@@ -92,6 +97,9 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({ mode, onAbout }) => {
     <div className="cards-container">
       {/* Header */}
       <div className="cards-header">
+        <button className="header-link" onClick={onBack}>
+          ← Back
+        </button>
         <div className="header-title">
           <div>Desert Spark Cards</div>
           <div>with Aiesha Beasley</div>

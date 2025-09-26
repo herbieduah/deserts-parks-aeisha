@@ -55,6 +55,10 @@ function App() {
     setCurrentScreen('cards')
   }
 
+  const handleBackToModeSelection = () => {
+    setCurrentScreen('mode-selection')
+  }
+
   const handleBackFromTipCalculator = () => {
     // Return to the last non-tip-calculator screen
     if (selectedMode) {
@@ -83,7 +87,11 @@ function App() {
       )}
 
       {currentScreen === 'cards' && (
-        <CardSwiper mode={selectedMode} onAbout={handleAbout} />
+        <CardSwiper
+          mode={selectedMode}
+          onAbout={handleAbout}
+          onBack={handleBackToModeSelection}
+        />
       )}
 
       {currentScreen === 'about' && <AboutPage onBack={handleBackToCards} />}
