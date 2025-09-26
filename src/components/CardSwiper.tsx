@@ -80,37 +80,30 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({ mode, onAbout }) => {
 
   if (loading) {
     return (
-      <div className="screen screen-center">
-        <div className="card card-large">
-          <p>Loading questions...</p>
+      <div className="cards-container">
+        <div className="question-card">
+          <p className="question-text">Loading questions...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="screen">
+    <div className="cards-container">
       {/* Header */}
-      <div className="header">
-        <div>
-          <div className="header-title">Desert Spark Cards</div>
-          <div className="header-subtitle">with Aiesha Beasley</div>
+      <div className="cards-header">
+        <div className="header-title">
+          <div>Desert Spark Cards</div>
+          <div>with Aiesha Beasley</div>
         </div>
         <button className="header-link" onClick={onAbout}>
           About
         </button>
       </div>
 
-      {/* Card Carousel */}
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          alignItems: 'center',
-          padding: '20px'
-        }}
-      >
-        <div className="embla" ref={emblaRef} style={{ width: '100%' }}>
+      {/* Card Swiper */}
+      <div className="card-swiper">
+        <div className="embla" ref={emblaRef}>
           <div className="embla__container" style={{ display: 'flex' }}>
             {questions.map((question, index) => (
               <div
@@ -118,12 +111,8 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({ mode, onAbout }) => {
                 className="embla__slide"
                 style={{ flex: '0 0 100%', minWidth: 0 }}
               >
-                <div className="card card-large">
-                  <p
-                    style={{ fontSize: '1.2rem', lineHeight: '1.6', margin: 0 }}
-                  >
-                    {question.text}
-                  </p>
+                <div className="question-card">
+                  <p className="question-text">{question.text}</p>
                 </div>
               </div>
             ))}
@@ -133,8 +122,9 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({ mode, onAbout }) => {
 
       {/* Footer */}
       <div className="footer">
-        <span>Powered by</span>
-        <img src="/assets/opnrs-logo.svg" alt="Opnrs" />
+        <span className="footer-text">Powered by</span>
+        <img src="/assets/opnrs-logo.svg" alt="Opnrs" className="footer-logo" />
+        <span className="footer-text">Opnrs</span>
       </div>
     </div>
   )

@@ -36,19 +36,15 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onBack }) => {
   }
 
   return (
-    <div className="screen" style={{ padding: '20px' }}>
-      <div className="header" style={{ padding: '0 0 20px 0', border: 'none' }}>
-        <button className="header-link" onClick={onBack}>
+    <div className="tip-calculator">
+      <div className="tip-header">
+        <button className="back-button" onClick={onBack}>
           ← Cards
         </button>
-        <div className="header-title">Tip Calculator</div>
-        <div></div>
+        <h1>Tip Calculator</h1>
       </div>
 
-      <div
-        className="content-stack"
-        style={{ maxWidth: '400px', margin: '0 auto' }}
-      >
+      <div className="tip-form">
         {/* Bill Amount Input */}
         <div className="card">
           <label
