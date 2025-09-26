@@ -22,11 +22,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
       </div>
 
       <div className="about-content">
+        <div className="how-to-use"></div>
         <h1>About Desert Spark Cards</h1>
         <p>
-          A collaboration between Aiesha Beasley and Opnrs to help people
+          A collaboration between Aiesha Beasley and opnrs to help people
           connect through meaningful conversations while exploring the vibrant
           Phoenix social scene.
+        </p>
+
+        <h2>How to Use</h2>
+        <p>
+          Choose your mode, swipe through questions, and let the conversations
+          flow naturally. Perfect for dates, couples, or getting to know someone
+          new. Flip your phone to landscape mode for a handy tip calculator!
         </p>
 
         <div className="about-aiesha">
@@ -146,16 +154,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
               <span>Email</span>
             </a>
           </div>
-        </div>
-
-        <div className="how-to-use">
-          <h3>How to Use</h3>
-          <p>
-            Choose your mode, swipe through questions, and let the conversations
-            flow naturally. Perfect for dates, couples, or getting to know
-            someone new. Flip your phone to landscape mode for a handy tip
-            calculator!
-          </p>
         </div>
       </div>
     </div>

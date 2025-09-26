@@ -21,14 +21,15 @@ export const EntryScreen: React.FC<EntryScreenProps> = ({ onStart }) => {
           </p>
         </div>
       </div>
-
-      <button
-        className="btn btn-primary"
-        onClick={onStart}
-        style={{ position: 'relative', zIndex: 3 }}
-      >
-        Let's Start
-      </button>
+      <div className="start-button-container">
+        <button
+          className="btn btn-primary"
+          onClick={onStart}
+          style={{ position: 'relative', zIndex: 3 }}
+        >
+          Let's Start
+        </button>
+      </div>
     </div>
   )
 }

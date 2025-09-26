@@ -158,11 +158,6 @@ p {
   color: var(--color-text);
 }
 
-.start-button-container {
-  padding-left: var(--spacing-medium);
-  padding-right: var(--spacing-medium);
-}
-
 /* Buttons - Flat Design with Two-Color Palette */
 .btn {
   font-family: var(--font-family);
@@ -330,7 +325,6 @@ p {
   align-items: center;
   padding: var(--spacing-medium) var(--spacing-large);
   background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
 }
 
 .header-title {
@@ -423,7 +417,7 @@ p {
   gap: var(--spacing-extraSmall);
   padding: var(--spacing-medium);
   background-color: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  margin-bottom: var(--spacing-large);
 }
 
 .footer-text {
@@ -451,14 +445,10 @@ p {
 .about-header {
   position: sticky;
   top: 0;
-  padding: var(--spacing-medium) var(--spacing-large);
+  padding: var(--spacing-medium) 0;
   background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  z-index: 10;
-}
 
-.about-content {
-  padding: var(--spacing-large);
+  z-index: 10;
 }
 
 .about-content h1 {
