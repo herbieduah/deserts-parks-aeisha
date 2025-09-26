@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { EntryScreen } from './components/EntryScreen'
 import { ModeSelection, GameMode } from './components/ModeSelection'
 import { CardSwiper } from './components/CardSwiper'
